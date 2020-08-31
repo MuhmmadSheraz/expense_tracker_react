@@ -1,33 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./transactionHistory.css";
+import { GlobalContext } from "../../context/GlobalState";
 let TrasactionHistory = () => {
-  //   const [isShown, setIsShown] = useState(false);
+  const { transactions, deleteTransaction } = useContext(GlobalContext);
+  let deleteHistory = (id, Amount) => {
+    deleteTransaction(id, Amount);
+    console.log(id);
+  };
   return (
     <div className="historyWrapper">
-      <div className="history1">
-        <p>Ali Khan Saab</p>
-        <p> 100000 PKR </p>
-
-        <span className="deleteBtn red">X</span>
-      </div>
-      <div className="history1">
-        <p>Ali Khan Saab</p>
-        <p> 100000 PKR </p>
-
-        <span className="deleteBtn red">X</span>
-      </div>
-      <div className="history1">
-        <p>Ali Khan Saab</p>
-        <p> 100000 PKR </p>
-
-        <span className="deleteBtn red">X</span>
-      </div>
-      <div className="history1">
-        <p>Ali Khan Saab</p>
-        <p> 100000 PKR </p>
-
-        <span className="deleteBtn red">X</span>
-      </div>
+      {transactions.length ?
+      transactions.map((x, index) => {
+        console.log(x.id);
+        return x.Amount < 0 ? (
+          <div key={index} className="historyEx">
+            <p>{x.description}</p>
+            <p> $ {Math.abs(x.Amount)} </p>
+            <span
+              className="deleteBtn"
+              onClick={() => deleteHistory(x.id, x.Amount)}
+            >
+              X
+            </span>
+          </div>
+        ) : (
+          <div key={index} className="historyIn">
+            <p>{x.description}</p>
+            <p>$ {x.Amount} </p>
+            <span
+              className="deleteBtn"
+              onClick={() => deleteHistory(x.id, x.Amount)}
+            >
+              X
+            </span>
+          </div>
+        );
+      })
+      :<p className="noHistory">No History Found !</p>}
     </div>
   );
 };

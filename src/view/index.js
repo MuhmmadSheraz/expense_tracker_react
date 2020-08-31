@@ -4,7 +4,7 @@ import CurrentBalance from "../components/CurrentBalance";
 import Transaction from "../components/Transaction";
 import TrasactionHistory from "../components/TransactionHistory";
 import TransactionInput from "../components/TransactionInput";
-import ActionButton from "../components/ActionButton/";
+
 let TrackerView = () => {
   return (
     <div className="abc">
@@ -17,7 +17,6 @@ let TrackerView = () => {
         <hr className="hr" />
       <div className="ContentBody">
         <TransactionInput />
-        <ActionButton />
       </div>
     </div>
   );

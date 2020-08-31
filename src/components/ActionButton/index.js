@@ -1,14 +1,10 @@
 import React from "react";
 import "./actionBtn.css";
-let ActionButton = () => {
-  let hello = () => {
-    console.log("action******");
-  };
+let ActionButton = (props) => {
   return (
     <div style={{ textAlign: "center", marginTop: "10px" }}>
-      <button className="addTransaction" onClick={hello}>
-        {" "}
-        Add Transaction{" "}
+      <button className="addTransaction" onClick={props.click}>
+        Add Transaction
       </button>
     </div>
   );
